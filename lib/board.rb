@@ -9,7 +9,7 @@ class Board
 	end
 
 	def game_is_over
-
+    
     [@board[0], @board[1], @board[2]].uniq.length == 1 ||
     [@board[3], @board[4], @board[5]].uniq.length == 1 ||
     [@board[6], @board[7], @board[8]].uniq.length == 1 ||
@@ -21,7 +21,8 @@ class Board
   end
 
   def tie
-    @board.all? { |s| s == "X" || s == "O" }
+    symbols = @board.uniq
+    @board.all? { |s| s == symbols[0] || s == symbols[1] }
   end
 end
 

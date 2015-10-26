@@ -1,86 +1,39 @@
 class Game
   attr_accessor :board
-  def initialize(board)
+  def initialize(board, computer, human)
+    
     @board = board
-    @com = "X"
-    @hum = "O"
+    @computer = computer
+    @human = human
+  end
+
+  def get_user_input
+    
+      puts "Please select your spot."
+      spot = gets.chomp
+    
   end
 
   def start_game
     puts "Welcome to my Tic Tac Toe game"
     puts @board
-    puts "Please select your spot."
+    
     until @board.game_is_over || @board.tie
-      get_human_spot
-      if !@board.game_is_over && !@board.tie
-        eval_board
+      puts "HUMAN TURN"
+      #Not the best
+      until @human.get_human_spot(@board, @computer.marker, get_user_input)do
       end
+      ####
+      puts @board
+      if !@board.game_is_over && !@board.tie
+        @computer.eval_board(@board, @human.marker)
+      end
+      puts "COMPUTER TURN"
       puts @board
     end
     puts "Game over"
   end
 
-  def get_human_spot
-    spot = nil
-    until spot
-      spot = gets.chomp.to_i
-      if @board.board[spot] != "X" && @board.board[spot] != "O"
-        @board.board[spot] = @hum
-      else
-        spot = nil
-      end
-    end
-  end
-
-  def eval_board
-    spot = nil
-    until spot
-      if @board.board[4] == "4"
-        spot = 4
-        @board.board[spot] = @com
-      else
-        spot = get_best_move(@board.board, @com)
-        if @board.board[spot] != "X" && @board.board[spot] != "O"
-          @board.board[spot] = @com
-        else
-          spot = nil
-        end
-      end
-    end
-  end
-
-  def get_best_move(board, next_player, depth = 0, best_score = {})
-    available_spaces = []
-    best_move = nil
-    board.each do |s|
-      if s != "X" && s != "O"
-        available_spaces << s
-      end
-    end
-    available_spaces.each do |as|
-      board[as.to_i] = @com
-      if @board.game_is_over
-        best_move = as.to_i
-        board[as.to_i] = as
-        return best_move
-      else
-        board[as.to_i] = @hum
-        if @board.game_is_over
-          best_move = as.to_i
-          board[as.to_i] = as
-          return best_move
-        else
-          board[as.to_i] = as
-        end
-      end
-    end
-    if best_move
-      return best_move
-    else
-      n = rand(0..available_spaces.count)
-      return available_spaces[n].to_i
-    end
-  end
 
 end
 
