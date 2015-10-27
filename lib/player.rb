@@ -19,6 +19,7 @@ class Computer < Player
       if board[4] == "4"
         spot = 4
         board[spot] = @marker
+        return spot
       else
         spot = get_best_move(board, opponent_marker)
         if board[spot] != @marker && board[spot] != opponent_marker

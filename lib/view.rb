@@ -14,16 +14,34 @@ module View
 		gets.chomp.to_i
 	end
 
+	def self.marker_validation
+		marker = ''
+		loop do
+			print "Please choose a single character marker: "
+			marker = gets.chomp
+			if marker.length == 1
+				break
+			else
+				puts "\e[H\e[2J"
+				puts "Marker must be a single character."
+				sleep(1.5)
+				puts "\e[H\e[2J"
+			end
+			
+		end
+
+		return marker
+	end
+
 	def self.player_setup(player, other_player)
 		print "Please choose a name: "
 		player.name = gets.chomp.red
-		print "Please choose a marker: "
-		player.marker = gets.chomp.red
+		# print "Please choose a marker: "
+		player.marker = marker_validation.red
 		print "Please choose another name: "
 		other_player.name = gets.chomp.blue
-		print "Please choose another marker: "
-		other_player.marker = gets.chomp.blue
-
+		# print "Please choose another marker: "
+		other_player.marker = marker_validation.blue
 	end
 
 	def self.first_player_select(player, other_player)
