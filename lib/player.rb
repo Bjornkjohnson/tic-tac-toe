@@ -1,4 +1,5 @@
 require_relative 'board'
+
 class Player 
   attr_reader :name, :marker
   def to_s
@@ -11,6 +12,10 @@ class Computer < Player
     @name = name
     @marker = marker
     
+  end
+
+  def turn
+  	
   end
 
   def eval_board(board, opponent_marker)

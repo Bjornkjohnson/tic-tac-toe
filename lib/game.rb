@@ -1,37 +1,46 @@
+require_relative 'view'
 class Game
   attr_accessor :board
   def initialize(board, computer, human)
     
     @board = board
-    @computer = computer
-    @human = human
+    @player2 = computer
+    @player1 = human
   end
 
-  def get_user_input
-    
-      puts "Please select your spot."
+  def get_user_input(name)
+      View.human_prompt(name)
       spot = gets.chomp
     
   end
 
+  def turn(player, next_player)
+      if player.class == Human
+        #Not the best
+        until player.get_human_spot(@board, next_player.marker, get_user_input(player.name))do
+        end
+        ####
+        View.print_board(@board)
+      else
+        View.computer_thinking(player)
+        player.eval_board(@board, next_player.marker)
+        View.print_board(@board)
+      end
+  end
+
+  def setup
+
+  end
+
   def start_game
-    puts "Welcome to my Tic Tac Toe game"
-    puts @board
-    
+    View.welcome(@board)
     until @board.game_is_over || @board.tie
-      puts "HUMAN TURN"
-      #Not the best
-      until @human.get_human_spot(@board, @computer.marker, get_user_input)do
-      end
-      ####
-      puts @board
+      turn(@player1, @player2)
       if !@board.game_is_over && !@board.tie
-        @computer.eval_board(@board, @human.marker)
+        turn(@player2, @player1)
       end
-      puts "COMPUTER TURN"
-      puts @board
     end
-    puts "Game over"
+    View.game_over
   end
 
 

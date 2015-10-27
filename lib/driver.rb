@@ -2,5 +2,7 @@ require_relative 'game'
 require_relative 'board'
 require_relative 'board'
 require_relative 'player'
-game = Game.new(Board.new, Computer.new, Human.new)
+require 'cli-colorize'
+# game = Game.new(Board.new, Computer.new("Compy", "A".red), Computer.new("Zulu", "B".blue))
+game = Game.new(Board.new, Human.new("Compy", "A".red), Human.new("Zulu", "B".blue))
 game.start_game
