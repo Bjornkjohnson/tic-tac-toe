@@ -1,7 +1,7 @@
 require_relative 'board'
 
 class Player 
-  attr_reader :name, :marker
+  attr_accessor :name, :marker
   def to_s
     @marker
   end
