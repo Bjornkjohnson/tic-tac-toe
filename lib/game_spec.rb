@@ -19,9 +19,14 @@ describe "Board" do
     board = Board.new
     expect(board.board).to eq ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
   end
+
+  it "should return available spaces in an array" do
+    board = Board.new
+    board[1] = 'X'
+    board[5] = 'O'
+    expect(board.available_spaces('X', 'O')).to eq ["0", "2", "3", "4", "6", "7", "8"]
+  end
 end
-
-
 
 describe "Player" do
   before :each do

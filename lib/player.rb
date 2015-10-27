@@ -11,23 +11,19 @@ class Computer < Player
 	def initialize(name = "Computer", marker = "X")
     @name = name
     @marker = marker
-    
-  end
-
-  def turn
-  	
   end
 
   def eval_board(board, opponent_marker)
     spot = nil
     until spot
-      if board.board[4] == "4"
+      if board[4] == "4"
         spot = 4
-        board.board[spot] = @marker
+        board[spot] = @marker
       else
         spot = get_best_move(board, opponent_marker)
-        if board.board[spot] != @marker && board.board[spot] != opponent_marker
-          board.board[spot] = @marker
+        if board[spot] != @marker && board[spot] != opponent_marker
+          board[spot] = @marker
+          return spot
         else
           spot = nil
         end
@@ -39,25 +35,22 @@ class Computer < Player
     available_spaces = []
     best_move = nil
 
-    board.board.each do |s|
-      if s != @marker && s != opponent_marker
-        available_spaces << s
-      end
-    end
+    available_spaces = board.available_spaces(@marker, opponent_marker)
+
     available_spaces.each do |as|
-      board.board[as.to_i] = @marker
+      board[as.to_i] = @marker
       if board.game_is_over
         best_move = as.to_i
-        board.board[as.to_i] = as
+        board[as.to_i] = as
         return best_move
       else
-        board.board[as.to_i] = opponent_marker
+        board[as.to_i] = opponent_marker
         if board.game_is_over
           best_move = as.to_i
-          board.board[as.to_i] = as
+          board[as.to_i] = as
           return best_move
         else
-          board.board[as.to_i] = as
+          board[as.to_i] = as
         end
       end
     end
@@ -81,8 +74,8 @@ class Human < Player
   		return nil
   	end
   	get_spot = get_spot.to_i
-    if board.board[get_spot] != opponent_marker && board.board[get_spot] != @marker 
-      board.board[get_spot] = @marker 
+    if board[get_spot] != opponent_marker && board[get_spot] != @marker 
+      board[get_spot] = @marker 
       return 1
     else
       return nil

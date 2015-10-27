@@ -8,8 +8,28 @@ class Board
 		"|_#{@board[0]}_|_#{@board[1]}_|_#{@board[2]}_|\n|_#{@board[3]}_|_#{@board[4]}_|_#{@board[5]}_|\n|_#{@board[6]}_|_#{@board[7]}_|_#{@board[8]}_|\n"
 	end
 
+  def [](y)
+    @board[y]
+  end
+
+  def []=(y, value)
+    @board[y] = value
+  end
+
+  def available_spaces(marker1, marker2)
+    available_spaces = []
+    @board.each do |s|
+      if s != marker1 && s != marker2
+        available_spaces << s
+      end
+    end
+    return available_spaces
+  end
+
+  # board.get_spot(2)
+
 	def game_is_over
-    
+
     [@board[0], @board[1], @board[2]].uniq.length == 1 ||
     [@board[3], @board[4], @board[5]].uniq.length == 1 ||
     [@board[6], @board[7], @board[8]].uniq.length == 1 ||
@@ -25,4 +45,3 @@ class Board
     @board.all? { |s| s == symbols[0] || s == symbols[1] }
   end
 end
-
