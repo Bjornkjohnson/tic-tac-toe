@@ -8,12 +8,31 @@ class Game
     @player2 = "O"
   end
 
+  def validate_human_move(spot)
+    if @board[spot] == @player1.marker || @board[spot] == @player2.marker 
+      View.spot_taken
+      View.print_board(@board)
+      return false
+    elsif !(/^[0-8]$/.match(spot.to_s))
+      View.invalid_input
+      View.print_board(@board)
+      return false
+    end
+    true
+  end
+
+  def get_human_spot(player)
+    
+    spot = View.get_user_input(player.name).to_i
+    while !validate_human_move(spot)
+      spot = View.get_user_input(player.name).to_i
+    end
+    @board[spot] = player.marker
+  end
+
   def turn(player, next_player)
       if player.class == Human
-        #Not the best
-        until player.get_human_spot(@board, next_player.marker, View.get_user_input(player.name))do
-        end
-        ####
+        get_human_spot(player)
       else
         View.computer_thinking(player)
         player_choice = player.eval_board(@board, next_player.marker)

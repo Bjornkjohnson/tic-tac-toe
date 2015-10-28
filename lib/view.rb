@@ -102,6 +102,13 @@ module View
 		puts "#{name} Won!"
 	end
 
+	def self.spot_taken
+		puts "\e[H\e[2J"
+		puts "That spot has already been taken!"
+		sleep(1)
+		puts "\e[H\e[2J"
+	end
+
 	def self.invalid_input
 		puts "\e[H\e[2J"
 		puts "Invalid Input!"
