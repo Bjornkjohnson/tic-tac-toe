@@ -7,3 +7,7 @@ Tic Tac Toe code sample
 2. Move to /lib folder
 3. Run bundle install
 4. Run ruby driver.rb
+
+### Tests
+
+rspec game_spec.rb
