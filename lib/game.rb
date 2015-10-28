@@ -1,7 +1,7 @@
 require_relative 'view'
 
 class Game
-  attr_accessor :board
+  # attr_accessor :board
   def initialize(board)
     @board = board
   end
@@ -39,27 +39,10 @@ class Game
 
   def setup
     choice = View.choose_players_types
-    # case choice 
-    # when 1
-    #   human1 = Human.new
-    #   human2 = Human.new
-    #   View.player_setup(human1, human2)
-    #   first_player_select(human1,human2)
-    # when 2
-    #   computer1 = Computer.new
-    #   computer2 = Computer.new
-    #   View.player_setup(computer1, computer2)
-    #   first_player_select(computer1, computer2)
-    # when 3
-    #   human = Human.new
-    #   computer = Computer.new
-    #   View.player_setup(human, computer)
-    #   first_player_select(human, computer)
-    # else
-    #   View.invalid_input
-    #   setup
-    # end
-
+    while choice != 1 && choice != 2 && choice != 3
+      View.invalid_input
+      choice = View.choose_players_types
+    end
     case choice
     when 1
       p1 = Human.new
@@ -70,16 +53,13 @@ class Game
     when 3
       p1 = Human.new
       p2 = Computer.new
-    else
-      View.invalid_input
-      setup
     end
       View.player_setup(p1, p2)
       first_player_select(p1, p2)
   end
 
   def determine_winner
-    if board.winner == @player1.marker
+    if @board.winner == @player1.marker
       View.winner(@player1.name)
     else
       View.winner(@player2.name)

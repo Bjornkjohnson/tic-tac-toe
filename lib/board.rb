@@ -32,8 +32,6 @@ class Board
   end
 
 	def game_is_over
-
-    
     if [@board[0], @board[1], @board[2]].uniq.length == 1
       @winner = @board[0]
       return true
