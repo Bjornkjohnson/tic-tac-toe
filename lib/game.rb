@@ -108,7 +108,4 @@ class Game
     View.game_over
   end
 
-
 end
-
-

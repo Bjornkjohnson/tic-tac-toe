@@ -35,7 +35,7 @@ class Computer < Player
   def get_best_move(board, opponent_marker, depth = 0, best_score = {})
   	return 0 if board.tie
     return -1 if board.game_is_over
-    
+
     current_player_mark = ''
     if depth % 2 == 0
   		current_player_mark = @marker
@@ -53,7 +53,6 @@ class Computer < Player
 
     best_move = best_score.max_by { |key, value| value }[0]
     highest_minimax_score = best_score.max_by { |key, value| value }[1]
-    puts best_score
     if depth == 0
       return best_move
     elsif depth > 0

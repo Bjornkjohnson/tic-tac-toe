@@ -4,7 +4,6 @@ require_relative 'board'
 
 describe "Tic Tac Toe" do
   
-  
   it "should never let the user win"
   it "should display whos turn it is"
   it "should display what spot a user chose"
