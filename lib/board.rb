@@ -1,12 +1,12 @@
 class Board
-	attr_accessor :board, :winner
-	def initialize
-		@board = [*(0..8)].map(&:to_s)
-	end
+  attr_accessor :board, :winner
+  def initialize
+    @board = [*(0..8)].map(&:to_s)
+  end
 
-	def to_s
-		"|_#{@board[0]}_|_#{@board[1]}_|_#{@board[2]}_|\n|_#{@board[3]}_|_#{@board[4]}_|_#{@board[5]}_|\n|_#{@board[6]}_|_#{@board[7]}_|_#{@board[8]}_|\n"
-	end
+  def to_s
+    "|_#{@board[0]}_|_#{@board[1]}_|_#{@board[2]}_|\n|_#{@board[3]}_|_#{@board[4]}_|_#{@board[5]}_|\n|_#{@board[6]}_|_#{@board[7]}_|_#{@board[8]}_|\n"
+  end
 
   def [](index)
     @board[index]
@@ -30,7 +30,7 @@ class Board
     @board[0] == '0' && @board[2]== '2' && @board[4]== '4' && @board[6]== '6' && @board[8] == '8'
   end
 
-	def game_is_over
+  def game_is_over
     if [@board[0], @board[1], @board[2]].uniq.length == 1
       @winner = @board[0]
       return true

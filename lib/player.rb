@@ -5,7 +5,7 @@ class Player
 end
 
 class Computer < Player
-	def initialize(name = "Computer", marker = "X")
+  def initialize(name = "Computer", marker = "X")
     @name = name
     @marker = marker
   end
@@ -30,15 +30,15 @@ class Computer < Player
   end
 
   def get_best_move(board, opponent_marker, depth = 0, best_score = {})
-  	return 0 if board.tie
+    return 0 if board.tie
     return -1 if board.game_is_over
 
     current_player_mark = ''
     if depth % 2 == 0
-  		current_player_mark = @marker
-  	else
-  		current_player_mark = opponent_marker
-  	end
+      current_player_mark = @marker
+    else
+      current_player_mark = opponent_marker
+    end
 
     as = board.available_spaces(@marker, opponent_marker)
     
@@ -59,7 +59,7 @@ class Computer < Player
 end
 
 class Human < Player
-	def initialize(name = "Guest", marker = "O")
+  def initialize(name = "Guest", marker = "O")
     @name = name
     @marker = marker
   end
