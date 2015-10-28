@@ -2,9 +2,6 @@ require_relative 'board'
 
 class Player 
   attr_accessor :name, :marker
-  def to_s
-    @marker
-  end
 end
 
 class Computer < Player
@@ -16,7 +13,7 @@ class Computer < Player
   def eval_board(board, opponent_marker)
     spot = nil
     until spot
-      if board.starter_spaces_are_available
+      if board.starter_spaces_are_available?
         spot = [0,2,4,6,8].sample
         board[spot] = @marker
         return spot
@@ -65,18 +62,5 @@ class Human < Player
 	def initialize(name = "Guest", marker = "O")
     @name = name
     @marker = marker
-  end
-
-  def get_human_spot(board, opponent_marker, get_spot)
-  	if !(/^[0-8]$/.match(get_spot.to_s))
-  		return nil
-  	end
-  	get_spot = get_spot.to_i
-    if board[get_spot] != opponent_marker && board[get_spot] != @marker 
-      board[get_spot] = @marker 
-      return 1
-    else
-      return nil
-    end
   end
 end

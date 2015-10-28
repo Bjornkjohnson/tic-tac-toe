@@ -3,8 +3,8 @@ require_relative 'view'
 class Game
   def initialize(board)
     @board = board
-    @player1 = "X"
-    @player2 = "O"
+    @player1 = Computer.new
+    @player2 = Human.new
   end
 
   def validate_human_move(spot)
@@ -62,6 +62,14 @@ class Game
     end
   end
 
+  def determine_winner
+    if @board.winner == @player1.marker
+      View.winner(@player1.name)
+    else
+      View.winner(@player2.name)
+    end
+  end
+
   def setup
     choice = View.choose_players_types
     while choice != 1 && choice != 2 && choice != 3
@@ -83,14 +91,6 @@ class Game
       validate_markers_are_unique(p1,p2)
       View.set_marker_color(p1,p2)
       first_player_select(p1, p2)
-  end
-
-  def determine_winner
-    if @board.winner == @player1.marker
-      View.winner(@player1.name)
-    else
-      View.winner(@player2.name)
-    end
   end
 
   def start_game

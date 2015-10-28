@@ -1,19 +1,19 @@
 class Board
 	attr_accessor :board, :winner
 	def initialize
-		@board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+		@board = [*(0..8)].map(&:to_s)
 	end
 
 	def to_s
 		"|_#{@board[0]}_|_#{@board[1]}_|_#{@board[2]}_|\n|_#{@board[3]}_|_#{@board[4]}_|_#{@board[5]}_|\n|_#{@board[6]}_|_#{@board[7]}_|_#{@board[8]}_|\n"
 	end
 
-  def [](y)
-    @board[y]
+  def [](index)
+    @board[index]
   end
 
-  def []=(y, value)
-    @board[y] = value
+  def []=(index, value)
+    @board[index] = value
   end
 
   def available_spaces(marker1, marker2)
@@ -26,9 +26,8 @@ class Board
     return available_spaces
   end
 
-  def starter_spaces_are_available
-    return true if @board[0] == '0' && @board[2]== '2' && @board[4]== '4' && @board[6]== '6' && @board[8] == '8'
-    false
+  def starter_spaces_are_available?
+    @board[0] == '0' && @board[2]== '2' && @board[4]== '4' && @board[6]== '6' && @board[8] == '8'
   end
 
 	def game_is_over
