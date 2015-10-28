@@ -4,6 +4,8 @@ class Game
   # attr_accessor :board
   def initialize(board)
     @board = board
+    @player1 = "X"
+    @player2 = "O"
   end
 
   def turn(player, next_player)
@@ -37,6 +39,12 @@ class Game
     end
   end
 
+  def validate_markers_are_unique(p1,p2)
+    while p1.marker == p2.marker
+      View.choose_new_marker(p2)
+    end
+  end
+
   def setup
     choice = View.choose_players_types
     while choice != 1 && choice != 2 && choice != 3
@@ -55,6 +63,8 @@ class Game
       p2 = Computer.new
     end
       View.player_setup(p1, p2)
+      validate_markers_are_unique(p1,p2)
+      View.set_marker_color(p1,p2)
       first_player_select(p1, p2)
   end
 

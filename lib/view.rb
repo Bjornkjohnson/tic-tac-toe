@@ -14,6 +14,7 @@ module View
 		gets.chomp.to_i
 	end
 
+	#validation here because other views may not be single character
 	def self.marker_validation
 		marker = ''
 		loop do
@@ -27,24 +28,38 @@ module View
 				sleep(1.5)
 				puts "\e[H\e[2J"
 			end
-			
 		end
 
 		return marker
 	end
 
+	def self.choose_new_marker(player)
+		puts "\e[H\e[2J"
+		puts "Your marker is not unique."
+		player.marker = marker_validation
+	end
+
 	def self.player_setup(player, other_player)
+		puts "\e[H\e[2J"
 		print "Please choose a name: "
-		player.name = gets.chomp.red
+		player.name = gets.chomp
 		# print "Please choose a marker: "
-		player.marker = marker_validation.red
+		player.marker = marker_validation
 		print "Please choose another name: "
-		other_player.name = gets.chomp.blue
+		other_player.name = gets.chomp
 		# print "Please choose another marker: "
-		other_player.marker = marker_validation.blue
+		other_player.marker = marker_validation
+	end
+
+	def self.set_marker_color(player, other_player)
+		player.name = player.name.red
+		player.marker = player.marker.red
+		other_player.name = other_player.name.blue
+		other_player.marker = other_player.marker.blue
 	end
 
 	def self.first_player_select(player, other_player)
+		puts "\e[H\e[2J"
 		puts "Who would like to go first?"
 		puts "1: #{player.name}"
 		puts "2: #{other_player.name}"
