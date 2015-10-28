@@ -1,7 +1,6 @@
 require_relative 'view'
 
 class Game
-  # attr_accessor :board
   def initialize(board)
     @board = board
     @player1 = "X"
@@ -22,7 +21,6 @@ class Game
   end
 
   def get_human_spot(player)
-    
     spot = View.get_user_input(player.name).to_i
     while !validate_human_move(spot)
       spot = View.get_user_input(player.name).to_i
@@ -31,14 +29,14 @@ class Game
   end
 
   def turn(player, next_player)
-      if player.class == Human
-        get_human_spot(player)
-      else
-        View.computer_thinking(player)
-        player_choice = player.eval_board(@board, next_player.marker)
-        View.player_choice(player, player_choice)
-      end
-      View.print_board(@board)
+    if player.class == Human
+      get_human_spot(player)
+    else
+      View.computer_thinking(player)
+      player_choice = player.eval_board(@board, next_player.marker)
+      View.player_choice(player, player_choice)
+    end
+    View.print_board(@board)
   end
 
   def first_player_select(player, other_player)

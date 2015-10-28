@@ -2,7 +2,6 @@ module View
 	def self.welcome(board)
 		puts "\e[H\e[2J"
     puts "Welcome to my Tic Tac Toe game"
-    #puts board
 	end
 
 	def self.choose_players_types
@@ -43,11 +42,9 @@ module View
 		puts "\e[H\e[2J"
 		print "Please choose a name: "
 		player.name = gets.chomp
-		# print "Please choose a marker: "
 		player.marker = marker_validation
 		print "Please choose another name: "
 		other_player.name = gets.chomp
-		# print "Please choose another marker: "
 		other_player.marker = marker_validation
 	end
 
