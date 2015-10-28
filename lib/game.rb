@@ -60,6 +60,14 @@ class Game
     end
   end
 
+  def determine_winner
+    if board.winner == @player1.marker
+      View.winner(@player1.name)
+    else
+      View.winner(@player2.name)
+    end
+  end
+
   def start_game
     View.welcome(@board)
     setup
@@ -70,6 +78,8 @@ class Game
         turn(@player2, @player1)
       end
     end
+    View.tie if @board.tie
+    determine_winner if @board.game_is_over
     View.game_over
   end
 

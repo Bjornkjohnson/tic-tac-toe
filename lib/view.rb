@@ -79,13 +79,19 @@ module View
 		puts "Game over"
 	end
 
+	def self.tie
+		puts "It's a Tie!"
+	end
+
+	def self.winner(name)
+		puts "#{name} Won!"
+	end
+
 	def self.invalid_input
 		puts "\e[H\e[2J"
 		puts "Invalid Input!"
 		sleep(1)
 		puts "\e[H\e[2J"
-		
-
 	end
 
 end
