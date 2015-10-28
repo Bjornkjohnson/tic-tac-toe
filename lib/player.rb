@@ -59,36 +59,6 @@ class Computer < Player
     elsif depth > 0
       return highest_minimax_score
     end
-
-
-  #   available_spaces = []
-  #   best_move = nil
-
-  #   available_spaces = board.available_spaces(@marker, opponent_marker)
-
-  #   available_spaces.each do |as|
-  #     board[as.to_i] = @marker
-  #     if board.game_is_over
-  #       best_move = as.to_i
-  #       board[as.to_i] = as
-  #       return best_move
-  #     else
-  #       board[as.to_i] = opponent_marker
-  #       if board.game_is_over
-  #         best_move = as.to_i
-  #         board[as.to_i] = as
-  #         return best_move
-  #       else
-  #         board[as.to_i] = as
-  #       end
-  #     end
-  #   end
-  #   if best_move
-  #     return best_move
-  #   else
-  #     n = rand(0..available_spaces.count)
-  #     return available_spaces[n].to_i
-  #   end
   end
 end
 
