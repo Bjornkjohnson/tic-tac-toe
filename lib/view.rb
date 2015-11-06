@@ -1,7 +1,15 @@
 require_relative 'englishView.rb'
 require_relative 'spanishView.rb'
 module View
-  def self.welcome(board, language = 2)
+  def self.language_select
+    puts "Select language"
+    puts "1: English"
+    puts "2: Español"
+    print ">"
+    gets.chomp.to_i
+  end
+
+  def self.welcome(board, language)
     case language
     when 1
       EnglishView.welcome(board)
@@ -12,7 +20,7 @@ module View
     end
   end
 
-  def self.choose_players_types(language = 2)
+  def self.choose_players_types(language)
     case language
     when 1
       EnglishView.choose_players_types
@@ -23,7 +31,7 @@ module View
     end
   end
 
-  def self.marker_validation(language = 2)
+  def self.marker_validation(language)
     case language
     when 1
       EnglishView.marker_validation
@@ -34,7 +42,7 @@ module View
     end
   end
 
-  def self.choose_new_marker(player, language = 2)
+  def self.choose_new_marker(player, language)
     case language
     when 1
       EnglishView.choose_new_marker(player)
@@ -45,7 +53,7 @@ module View
     end
   end
 
-  def self.player_setup(player, other_player, language = 2)
+  def self.player_setup(player, other_player, language)
     case language
     when 1
       EnglishView.player_setup(player, other_player)
@@ -56,7 +64,7 @@ module View
     end
   end
 
-  def self.set_marker_color(player, other_player, language = 2)
+  def self.set_marker_color(player, other_player, language)
     case language
     when 1
       EnglishView.set_marker_color(player, other_player)
@@ -67,7 +75,7 @@ module View
     end
   end
 
-  def self.first_player_select(player, other_player, language = 2)
+  def self.first_player_select(player, other_player, language)
     case language
     when 1
       EnglishView.first_player_select(player, other_player)
@@ -78,7 +86,7 @@ module View
     end
   end
 
-  def self.computer_thinking(player, language = 2)
+  def self.computer_thinking(player, language)
     case language
     when 1
       EnglishView.computer_thinking(player)
@@ -89,7 +97,7 @@ module View
     end
   end
 
-  def self.player_choice(player, spot, language = 2)
+  def self.player_choice(player, spot, language)
     case language
     when 1
       EnglishView.player_choice(player, spot)
@@ -100,7 +108,7 @@ module View
     end
   end
 
-  def self.get_user_input(name, language = 2)
+  def self.get_user_input(name, language)
     case language
     when 1
       EnglishView.get_user_input(name)
@@ -111,7 +119,7 @@ module View
     end
   end
 
-  def self.print_board(board, language = 2)
+  def self.print_board(board, language)
     case language
     when 1
       EnglishView.print_board(board)
@@ -122,7 +130,7 @@ module View
     end
   end
 
-  def self.game_over(language = 2)
+  def self.game_over(language)
     case language
     when 1
       EnglishView.game_over
@@ -133,7 +141,7 @@ module View
     end
   end
 
-  def self.tie(language = 2)
+  def self.tie(language)
     case language
     when 1
       EnglishView.tie
@@ -144,7 +152,7 @@ module View
     end
   end
 
-  def self.winner(name, language = 2)
+  def self.winner(name, language)
     case language
     when 1
       EnglishView.winner(name)
@@ -155,7 +163,7 @@ module View
     end
   end
 
-  def self.spot_taken(language = 2)
+  def self.spot_taken(language)
     case language
     when 1
       EnglishView.spot_taken
@@ -166,7 +174,7 @@ module View
     end
   end
 
-  def self.invalid_input(language = 2)
+  def self.invalid_input(language)
     case language
     when 1
       EnglishView.invalid_input
