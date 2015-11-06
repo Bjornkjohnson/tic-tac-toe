@@ -52,12 +52,28 @@ describe "Computer" do
     @board = Board.new
     @computer = Computer.new
   end
-  it "should return winning move" do
-    @board.board = ["O", "X", "O", "O", "X", "X", "6", "7", "8"]
+  it "should return winning move scenario 1" do
+    @board.board = ["O", "X", "O", 
+                    "O", "X", "X", 
+                    "6", "7", "8"]
     expect(@computer.get_best_move(@board, "O")).to eq 7
   end
-  it "should return winning move" do
-    @board.board = ["O", "X", "O", "O", "O", "X", "6", "7", "X"]
+  it "should return winning move scenario 2" do
+    @board.board = ["X", "O", "X",
+                    "X", "X", "O", 
+                    "6", "7", "8"]
+    expect(@computer.get_best_move(@board, "O")).to eq 6
+  end
+  it "should choose wining move not block scenario 1" do
+    @board.board = ["O", "O", "X", 
+                    "O", "4", "X", 
+                    "6", "7", "8"]
+    expect(@computer.get_best_move(@board, "O")).to eq 8
+  end
+  it "should choose wining move not block scenario 2" do
+    @board.board = ["0", "O", "O", 
+                    "3", "4", "O", 
+                    "6", "X", "X"]
     expect(@computer.get_best_move(@board, "O")).to eq 6
   end
 end
