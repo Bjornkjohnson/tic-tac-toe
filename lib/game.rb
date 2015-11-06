@@ -96,6 +96,11 @@ class Game
 
   def choose_language
     @language = View.language_select
+    while !(/^[1-2]$/.match(@language.to_s))
+      View.invalid_input(1)
+      @language = View.language_select
+    end
+
   end
 
   def start_game

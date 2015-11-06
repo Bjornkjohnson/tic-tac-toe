@@ -2,6 +2,7 @@ require_relative 'englishView.rb'
 require_relative 'spanishView.rb'
 module View
   def self.language_select
+    puts "\e[H\e[2J"
     puts "Select language"
     puts "1: English"
     puts "2: Español"
