@@ -1,4 +1,4 @@
-module SpansihView
+module SpanishView
   def self.welcome(board)
     puts "\e[H\e[2J"
     puts "Bienvenidos a mi juego de Tic Tac Toe"
