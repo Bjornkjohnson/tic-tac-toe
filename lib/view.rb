@@ -16,8 +16,6 @@ module View
       EnglishView.welcome(board)
     when 2
       SpanishView.welcome(board)
-    else
-      puts "bad input"
     end
   end
 
@@ -27,21 +25,19 @@ module View
       EnglishView.choose_players_types
     when 2
       SpanishView.choose_players_types
-    else
-      puts "bad input"
     end
   end
 
-  def self.marker_validation(language)
-    case language
-    when 1
-      EnglishView.marker_validation
-    when 2
-      SpanishView.marker_validation
-    else
-      puts "bad input"
-    end
-  end
+  # def self.marker_validation(language)
+  #   case language
+  #   when 1
+  #     EnglishView.marker_validation
+  #   when 2
+  #     SpanishView.marker_validation
+  #   else
+  #     puts "bad input"
+  #   end
+  # end
 
   def self.choose_new_marker(player, language)
     case language
@@ -49,8 +45,6 @@ module View
       EnglishView.choose_new_marker(player)
     when 2
       SPanishView.choose_new_marker(player)
-    else
-      puts "bad input"
     end
   end
 
@@ -60,8 +54,6 @@ module View
       EnglishView.player_setup(player, other_player)
     when 2
       SpanishView.player_setup(player, other_player)
-    else
-      puts "bad input"
     end
   end
 
@@ -71,8 +63,6 @@ module View
       EnglishView.set_marker_color(player, other_player)
     when 2
       SpanishView.set_marker_color(player, other_player)
-    else
-      puts "bad input"
     end
   end
 
@@ -82,8 +72,6 @@ module View
       EnglishView.first_player_select(player, other_player)
     when 2
       SpanishView.first_player_select(player, other_player)
-    else
-      puts "bad input"
     end
   end
 
@@ -93,8 +81,6 @@ module View
       EnglishView.computer_thinking(player)
     when 2
       SpanishView.computer_thinking(player)
-    else
-      puts "bad input"
     end
   end
 
@@ -104,8 +90,6 @@ module View
       EnglishView.player_choice(player, spot)
     when 2
       SpanishView.player_choice(player, spot)
-    else
-      puts "bad input"
     end
   end
 
@@ -115,8 +99,6 @@ module View
       EnglishView.get_user_input(name)
     when 2
       SpanishView.get_user_input(name)
-    else
-      puts "bad input"
     end
   end
 
@@ -126,8 +108,6 @@ module View
       EnglishView.print_board(board)
     when 2
       SpanishView.print_board(board)
-    else
-      puts "bad input"
     end
   end
 
@@ -137,8 +117,6 @@ module View
       EnglishView.game_over
     when 2
       SpanishView.game_over
-    else
-      puts "bad input"
     end
   end
 
@@ -148,8 +126,6 @@ module View
       EnglishView.tie
     when 2
       SpanishView.tie
-    else
-      puts "bad input"
     end
   end
 
@@ -159,8 +135,6 @@ module View
       EnglishView.winner(name)
     when 2
       SpanishView.winner(name)
-    else
-      puts "bad input"
     end
   end
 
@@ -170,8 +144,6 @@ module View
       EnglishView.spot_taken
     when 2
       SpanishView.spot_taken
-    else
-      puts "bad input"
     end
   end
 
@@ -181,8 +153,6 @@ module View
       EnglishView.invalid_input
     when 2
       SpanishView.invalid_input
-    else
-      puts "bad input"
     end
   end
 
