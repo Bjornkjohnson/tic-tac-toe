@@ -94,17 +94,7 @@ class Game
       first_player_select(p1, p2)
   end
 
-  # def choose_language
-  #    = @view.language_select
-  #   while !(/^[1-2]$/.match(.to_s))
-  #     @view.invalid_input(1)
-  #      = @view.language_select
-  #   end
-
-  # end
-
   def start_game
-    # choose_language
     @view.welcome(@board)
     setup
     @view.print_board(@board)
