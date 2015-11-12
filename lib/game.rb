@@ -1,30 +1,30 @@
 require_relative 'view'
 
 class Game
-  def initialize(board)
+  def initialize(board, view)
     @board = board
     @player1 = Computer.new
     @player2 = Human.new
-    @language = 1
+    @view = view
   end
 
   def validate_human_move(spot)
     if @board[spot] == @player1.marker || @board[spot] == @player2.marker 
-      View.spot_taken(@language)
-      View.print_board(@board, @language)
+      @view.spot_taken
+      @view.print_board(@board)
       return false
     elsif !(/^[0-8]$/.match(spot.to_s))
-      View.invalid_input(@language)
-      View.print_board(@board, @language)
+      @view.invalid_input
+      @view.print_board(@board)
       return false
     end
     true
   end
 
   def get_human_spot(player)
-    spot = View.get_user_input(player.name, @language).to_i
+    spot = @view.get_user_input(player.name).to_i
     while !validate_human_move(spot)
-      spot = View.get_user_input(player.name, @language).to_i
+      spot = @view.get_user_input(player.name).to_i
     end
     @board[spot] = player.marker
   end
@@ -33,16 +33,16 @@ class Game
     if player.class == Human
       get_human_spot(player)
     else
-      View.computer_thinking(player, @language)
+      @view.computer_thinking(player)
       player_choice = player.eval_board(@board, next_player.marker)
-      View.player_choice(player, player_choice, @language)
+      @view.player_choice(player, player_choice)
     end
-    View.print_board(@board, @language)
+    @view.print_board(@board)
   end
 
   def first_player_select(player, other_player)
     loop do
-      first_player = View.first_player_select(player,other_player, @language)
+      first_player = @view.first_player_select(player,other_player)
       if first_player == 1
         @player1 = player
         @player2 = other_player
@@ -52,30 +52,30 @@ class Game
         @player2 = player
         break
       else
-        View.invalid_input(@language)
+        @view.invalid_input
       end
     end
   end
 
   def validate_markers_are_unique(p1,p2)
     while p1.marker == p2.marker
-      View.choose_new_marker(p2, @language)
+      @view.choose_new_marker(p2)
     end
   end
 
   def determine_winner
     if @board.winner == @player1.marker
-      View.winner(@player1.name, @language)
+      @view.winner(@player1.name)
     else
-      View.winner(@player2.name, @language)
+      @view.winner(@player2.name)
     end
   end
 
   def setup
-    choice = View.choose_players_types(@language)
+    choice = @view.choose_players_types
     while choice != 1 && choice != 2 && choice != 3
-      View.invalid_input(@language)
-      choice = View.choose_players_types(@language)
+      @view.invalid_input
+      choice = @view.choose_players_types
     end
     case choice
     when 1
@@ -88,35 +88,35 @@ class Game
       p1 = Human.new
       p2 = Computer.new
     end
-      View.player_setup(p1, p2, @language)
+      @view.player_setup(p1, p2)
       validate_markers_are_unique(p1,p2)
-      View.set_marker_color(p1,p2, @language)
+      @view.set_marker_color(p1,p2)
       first_player_select(p1, p2)
   end
 
-  def choose_language
-    @language = View.language_select
-    while !(/^[1-2]$/.match(@language.to_s))
-      View.invalid_input(1)
-      @language = View.language_select
-    end
+  # def choose_language
+  #    = @view.language_select
+  #   while !(/^[1-2]$/.match(.to_s))
+  #     @view.invalid_input(1)
+  #      = @view.language_select
+  #   end
 
-  end
+  # end
 
   def start_game
-    choose_language
-    View.welcome(@board, @language)
+    # choose_language
+    @view.welcome(@board)
     setup
-    View.print_board(@board, @language)
+    @view.print_board(@board)
     until @board.game_is_over || @board.tie
       turn(@player1, @player2)
       if !@board.game_is_over && !@board.tie
         turn(@player2, @player1)
       end
     end
-    View.tie(@language) if @board.tie
+    @view.tie if @board.tie
     determine_winner if @board.game_is_over
-    View.game_over(@language)
+    @view.game_over
   end
 
 end
