@@ -1,5 +1,3 @@
-require_relative 'view'
-
 class Game
   def initialize(board, view)
     @board = board
